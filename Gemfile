@@ -3,8 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
 
-gem "sinatra"
+gem 'sinatra', '2.0.7'
 gem "sinatra-contrib"
+gem 'rack', '2.2.8'
 
 # Use Puma as the app server
 gem "puma", "~> 5.0"
