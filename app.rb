@@ -5,11 +5,9 @@ require "json"
 
 get("/") do
   redirect("/food_form")
-
 end
 
 get("/food_form") do
-
   erb(:food_form)
 end
 
