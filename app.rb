@@ -12,9 +12,14 @@ get("/food_form") do
 end
 
 get("/get_foods") do
-  @ingredient_one = params.fetch("ingredient_one").capitalize
-  @ingredient_two = params.fetch("ingredient_two").capitalize
-  @ingredient_three = params.fetch("ingredient_three").capitalize
+  begin
+    @ingredient_one = params.fetch("ingredient_one").capitalize
+    @ingredient_two = params.fetch("ingredient_two").capitalize
+    @ingredient_three = params.fetch("ingredient_three").capitalize
+  rescue KeyError => e
+    # Handle missing parameters, e.g., redirect to the form with an error message
+    redirect("/food_form?error=#{e.message}")
+  end
   # build the API url, including the API key in the query string
   api_url = "https://api.spoonacular.com/recipes/findByIngredients/?apiKey=#{ENV["RECIPE_KEY"]}&ingredients=#{@ingredient_one},+#{@ingredient_two},+#{@ingredient_three}&number=20"
 
