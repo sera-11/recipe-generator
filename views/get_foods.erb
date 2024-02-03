@@ -1,11 +1,14 @@
 <h1> Foods you can make using <%=@ingredient_one%>, <%=@ingredient_two%>, and <%=@ingredient_three%>: </h1>
 
-
 <ul>
-  <% @parsed_data.each do |recipe| %>
-    <li>
-      <a href="/get_recipe/<%=recipe['id']%>"> <%= recipe['title'] %> </a>
-    </li>
+  <% if @parsed_data && !@parsed_data.empty? %>
+    <% @parsed_data.each do |recipe| %>
+      <li>
+        <a href="/get_recipe/<%= recipe['id'] %>"><%= recipe['title'] %></a>
+      </li>
+    <% end %>
+  <% else %>
+    <li>No recipes found</li>
   <% end %>
 </ul>
 
